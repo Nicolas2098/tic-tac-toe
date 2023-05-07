@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { Square } from "./components/Square"
-import { TURNS } from "./const/constants"
-import { checkWinnerFrom } from "./logic/board"
+import { TURNS } from "./constants"
+import { checkWinnerFrom , checkEndGame} from "./logic/board"
 import { WinnerModal } from "./components/WinnerModal"
-import { checkEndGame } from "./logic/board"
 
 function App() {
 
@@ -42,10 +41,10 @@ function App() {
       <button onClick={resetGame}>Reset game</button>
        <section className="game">
         {
-          board.map(( _ , index) => {
+          board.map(( square , index) => {
             return (
               <Square key={index} index={index} updateBoard={updateBoard}>
-                {board[index]}
+                {square}
               </Square>
             )
           })
@@ -61,7 +60,7 @@ function App() {
           </Square>
        </section>
 
-        <WinnerModal resetGame={resetGame} winner={winner}/>
+       <WinnerModal resetGame={resetGame} winner={winner}/>
     </main>
   )
 }
